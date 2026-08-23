@@ -47,6 +47,12 @@ Assembly completeness and contamination were evaluated using CheckM2 (v1.1.0) [C
 | DESC01 | GCF_000613185.1 | 98.57 | 0.915 | 95.0 | 96.37 | 87.0 | DSM 44829 |
 | DESC06 | GCF_000613185.1 | 98.57 | 0.913 | 95.0 | 96.37 | 87.0 | DSM 44829 |
 
+Phylogenomic classification via GTDB-Tk and TYGS unambiguously confirmed all eight isolates as *Mycolicibacterium cosmeticum*, sharing 98.57% ANI with reference genome GCF_000613185.1 across high marker alignment coverage (96.37% MSA).
+
+Genome assembly completeness was rigorously assessed using BUSCO v5 against the lineage-specific `mycolicibacterium_odb12` dataset comprising 1,712 single-copy orthologs. All eight *Mycolicibacterium cosmeticum* assemblies exhibited near-complete gene recovery, with total completeness values exceeding 99.0% (ANT06, BULB01, BULB06, and DESC01 at 99.24%; ANT01 at 99.18%; BODY01, BODY06, and DESC06 at 99.07%). The vast majority of benchmark genes were identified in single copy (1,684–1,688 genes; 98.4%–98.6%), while duplicated (0.6%–0.8%), fragmented (~0.5%), and missing (<0.5%) orthologs remained negligible across all isolates, validating the structural integrity of the polished genomes. Complementing the BUSCO benchmarks, genome quality assessment with CheckM2 demonstrated near-perfect completeness and high purity across all eight isolates, with lineage-specific completeness reaching 100.0% (99.33%–99.39% general completeness) and exceptionally low contamination rates (0.41%–0.43%), alongside robust coding densities of 92.4%–92.7%.
+
+![BUSCO assessment summary](busco_figure.png)
+
 # References
 1. **Trycycler**: Wick, R. R., Judd, L. M., Cerdeira, L. T., Hawkey, J., Méric, G., Vezina, B., Wyres, K. L., & Holt, K. E. (2021). Trycycler: consensus assembly of bacterial genomes from multiple long-read assemblies. *Genome Biology*, 22(1), 256. https://doi.org/10.1186/s13059-021-02483-3
 2. **BWA-MEM**: Li, H. (2013). Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. *arXiv preprint*, arXiv:1303.3997. https://doi.org/10.48550/arXiv.1303.3997
