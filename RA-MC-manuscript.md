@@ -27,11 +27,15 @@ Putative virulence factors were screened across all eight *M. cosmeticum* genome
 ### Antimicrobial Resistance (AMR) Gene Profiling
 Antimicrobial resistance genes were identified using the Resistance Gene Identifier (RGI v6.0.8) against the Comprehensive Antibiotic Resistance Database (CARD Canonical v4.0.1, CARD Variants v4.0.2) [Alcock et al., 2023]. Open reading frames (ORFs) were predicted using Pyrodigal and aligned using DIAMOND against curated CARD reference protein models. Only Strict hits were retained for resistome characterization, while Loose and Nudged predictions were excluded.
 
+### Plasmid and Mobilome Analysis
+Extrachromosomal replicons and mobile genetic elements (MGEs) were characterized using a multi-tool approach. Contig circularity was initially determined during Trycycler consensus assembly [Wick et al., 2021], and contigs were reoriented using dnaapler (v1.3.0) [Bouras et al., 2024], which identified replication initiation (*repA*) and large terminase (*terL*) genes on non-chromosomal contigs. Replicon typing, relaxase classification, and mobility prediction were performed using MOB-suite (v3.1.9) `mob_recon` with `--run_overhang`, `--keep_tmp`, and `--debug` flags [Robertson & Nash, 2018]. As an independent confirmation of replicon identity, plasmid and virus/provirus classification was performed using geNomad (v1.12.0) `end-to-end` with default scoring thresholds (plasmid/virus score ≥ 0.7) against the geNomad database [Camargo et al., 2024]. Insertion sequences (ISs) were identified from the MOB-suite MGE report.
+
+
 # Results and Discussion
 
 **Table 1.** Assembly, structural annotation, and quality statistics for the eight *Mycolicibacterium cosmeticum* isolates. Genome coverage was recalculated as the total number of bases in the paired-end short-read statistics divided by the corresponding assembled genome length. GC content and annotation counts were recalculated from the Bakta GenBank records. Completeness and contamination scores were estimated using CheckM2 (general model).
 
-| Isolate ID | Length (bp) | Genome Coverage (Short Reads) | GC Content (%) | CDSs | rRNAs | tRNAs | oriVs & oriTs | Number of Contigs | CheckM2 Comp. / Contam. (%) |
+| Isolate ID | Length (bp) | Genome Coverage (Short Reads) | GC Content (%) | CDSs | rRNAs | tRNAs | oriVs & oriTs | Number of Contigs | Completeness/Contamination (%) |
 | :--- | ---: | ---: | ---: | ---: | ---: | ---: | :---: | ---: | :---: |
 | ANT01 | 6,569,180 | 22.58× | 68.22 | 6,369 | 6 | 47 | 0 / 0 | 2 | 99.39 / 0.43 |
 | ANT06 | 6,546,594 | 22.51× | 68.23 | 6,334 | 6 | 47 | 0 / 0 | 2 | 99.39 / 0.42 |
@@ -42,7 +46,8 @@ Antimicrobial resistance genes were identified using the Resistance Gene Identif
 | DESC01 | 6,568,969 | 13.11× | 68.22 | 6,368 | 6 | 47 | 0 / 0 | 2 | 99.39 / 0.43 |
 | DESC06 | 6,554,122 | 12.57× | 68.22 | 6,346 | 6 | 47 | 0 / 0 | 5 | 99.39 / 0.41 |
 
-Across the eight *Mycolicibacterium cosmeticum* isolates, the hybrid assemblies revealed a highly conserved genomic architecture with total genome sizes ranging from 6.54 to 6.73 Mbp and high, uniform GC contents of 68.13%–68.23% (Table 1). Annotation identified 6,334 to 6,529 protein-coding sequences alongside strictly conserved RNA complements (6 rRNAs and 47 tRNAs) across all isolates. The assemblies achieved high contiguity (2–5 contigs), with five isolates resolved into a single closed chromosome (~6.33 Mbp) and a large plasmid (~240 kbp). Notably, in isolate DESC06 (5 contigs), the chromosome was partitioned across two large contigs; a ~5.25 Mbp primary segment (reoriented to *dnaA*) and a ~1.07 Mbp secondary segment. Evidence from independent TYGS evaluation of the secondary segment confirmed it as a fragmented chromosomal region rather than an unrelated replicon, yielding a d4 dDDH value of 84.6% (CI: 81.8%–87.0%) against *M. cosmeticum* DSM 44829, with their combined length (5.25 + 1.07 ≈ 6.32 Mbp) aligning with the intact ~6.33 Mbp chromosomes of the remaining isolates. Supported by short-read polishing coverages ranging from 12.57× to 31.85×, all assemblies demonstrated exceptional quality with CheckM2 general completeness exceeding 99.3% and negligible contamination (0.41%–0.43%), establishing high-confidence complete genomes for downstream comparative analysis.
+Across the eight *Mycolicibacterium cosmeticum* isolates, the hybrid assemblies revealed a highly conserved genomic architecture with total genome sizes ranging from 6.54 to 6.73 Mbp and high, uniform GC contents of 68.13%–68.23% (Table 1). Annotation identified 6,334 to 6,529 protein-coding sequences alongside strictly conserved RNA complements (6 rRNAs and 47 tRNAs) across all isolates. The assemblies achieved high contiguity (2–5 contigs), with five isolates resolved into a single closed chromosome (~6.33 Mbp) and a large plasmid (~240 kbp). Notably, in isolate DESC06 (5 contigs), the chromosome was partitioned across two large contigs; a ~5.25 Mbp primary segment (reoriented to *dnaA*) and a ~1.07 Mbp secondary segment. Evidence from independent TYGS evaluation of the secondary segment confirmed it as a fragmented chromosomal region rather than an unrelated replicon, yielding a d4 dDDH value of 84.6% (CI: 81.8%–87.0%) against *M. cosmeticum* DSM 44829, with their combined length (5.25 + 1.07 ≈ 6.32 Mbp) aligning with the intact ~6.33 Mbp chromosomes of the remaining isolates. This chromosomal attribution was independently supported by geNomad classification, which identified the three smaller contigs in DESC06 (7.5–162.8 kbp) as plasmids (scores 0.87–0.99) while excluding the 1.07 Mbp fragment from plasmid designation, detecting only a localized proviral remnant (6.1 kbp) at its terminal boundary. Supported by short-read polishing coverages ranging from 12.57× to 31.85×, all assemblies demonstrated exceptional quality with CheckM2 general completeness exceeding 99.3% and negligible contamination (0.41%–0.43%), establishing high-confidence complete genomes for downstream comparative analysis.
+
 
 **Table 2.** GTDB-Tk and TYGS taxonomic summary for the eight isolates. The d4 dDDH column reports the maximum d4 value in each isolate's TYGS pairwise comparison, and the closest strain ID is the TYGS deposit identifier.
 
@@ -83,6 +88,36 @@ All eight *Mycolicibacterium cosmeticum* isolates returned an identical and mini
 
 ![RGI all genes heatmap](RA-Mcosmeticum-RGI-all_genes.png)
 
+## Plasmid Architecture and Mobilome Dynamics
+
+Beyond the main chromosome, all eight *M. cosmeticum* isolates carried between one and four additional circular contigs resolved by Trycycler (Table 3). Several independent lines of evidence support a plasmid identity for the largest of these elements: (i) dnaapler reoriented them to a replication initiation protein gene (*repA*); (ii) their GC content (64.0%–65.3%) was consistently ~3% lower than that of the respective chromosomes (~68.3%); and (iii) geNomad classified each as a plasmid with high confidence (scores 0.87–0.99). MOB-suite `mob_recon`, however, assigned all contigs—including these putative plasmids—to the `chromosome` bin, and did not detect replicon, relaxase, or oriT biomarkers in seven of the eight isolates; the sole exception was BULB06 cluster_002 (191.2 kbp), for which MOB-suite identified a replicon match to `rep_cluster_1561` (NCBI accession CP015221; 99.9% identity). This discrepancy likely reflects the limited representation of mycobacterial megaplasmids in MOB-suite's reference databases.
+
+In five isolates (ANT01, ANT06, BODY01, BULB01, DESC01), the extrachromosomal complement consisted of a single putative megaplasmid (212.3–241.3 kbp; 65.1%–65.2% GC; geNomad plasmid scores 0.988–0.989). In BODY06, the corresponding element appeared to be split across two contigs of 153.3 kbp and 56.4 kbp (combined ~209.8 kbp; geNomad scores 0.989 and 0.982, respectively), possibly reflecting an unresolved assembly break at a repeat boundary. BULB06 carried three putative extrachromosomal elements totaling ~401 kbp: the 191.2 kbp replicon-typed contig, a 153.3 kbp *repA*-bearing contig, and a 56.7 kbp element (geNomad scores 0.982–0.989). In DESC06, aside from the ~1.07 Mbp displaced chromosomal fragment discussed above, three additional contigs were classified as putative plasmids by geNomad: a 162.8 kbp element (score 0.989, reoriented to *terL* by dnaapler), a 62.1 kbp *repA*-bearing replicon (score 0.989), and a 7.5 kbp element (score 0.868).
+
+geNomad additionally identified a conserved Caudoviricetes provirus (~10.9 kbp; virus score 0.945; 5 hallmark genes) integrated into the main chromosome at a syntenic position across seven of the eight isolates (~1.94 Mbp on cluster_001). In DESC06, a shorter proviral remnant (6.1 kbp; virus score 0.965) was detected at the start of the displaced cluster_002 segment rather than on the main chromosome, consistent with the structural rearrangement that fragmented this genome's chromosome. MOB-suite MGE screening identified IS1511 (IS256 family) insertion sequences exclusively on the main chromosomes, with 4 copies in most isolates and 3 in DESC06 (on its shorter cluster_001). No IS elements were detected on any of the extrachromosomal contigs.
+
+**Table 3.** Contig-level classification of all non-chromosomal elements across the eight *M. cosmeticum* isolates. mob_recon classification, dnaapler reorientation gene, and geNomad plasmid/provirus scores are shown for each contig. The main chromosomes (cluster_001, reoriented to *dnaA*) are omitted for brevity.
+
+| Isolate | Contig | Size (bp) | GC (%) | mob_recon class | rep_type | dnaapler gene | geNomad finding |
+| :--- | :--- | ---: | ---: | :--- | :--- | :--- | :--- |
+| ANT01 | cluster_002 | 241,330 | 65.15 | chromosome | – | *repA* | Plasmid (0.989; 1 hallmark) |
+| ANT06 | cluster_003 | 212,343 | 65.12 | chromosome | – | *repA* | Plasmid (0.988; 1 hallmark) |
+| BODY01 | cluster_002 | 233,501 | 65.10 | chromosome | – | *repA* | Plasmid (0.989; 1 hallmark) |
+| BODY06 | cluster_002 | 153,339 | 65.10 | chromosome | – | *repA* | Plasmid (0.989; 0 hallmarks) |
+| BODY06 | cluster_003 | 56,425 | 65.25 | chromosome | – | – | Plasmid (0.982; 1 hallmark) |
+| BULB01 | cluster_002 | 234,995 | 65.12 | chromosome | – | *repA* | Plasmid (0.988; 1 hallmark) |
+| BULB06 | cluster_002 | 191,200 | 64.82 | chromosome | rep_cluster_1561 | – | Plasmid (0.989; 2 hallmarks) |
+| BULB06 | cluster_005 | 153,343 | 65.10 | chromosome | – | *repA* | Plasmid (0.989; 0 hallmarks) |
+| BULB06 | cluster_007 | 56,704 | 65.20 | chromosome | – | – | Plasmid (0.982; 1 hallmark) |
+| DESC01 | cluster_002 | 241,128 | 65.16 | chromosome | – | *repA* | Plasmid (0.988; 1 hallmark) |
+| DESC06 | cluster_002† | 1,069,271 | 67.93 | chromosome | – | *terL* | Provirus at 1–6,117 bp (0.965) |
+| DESC06 | cluster_003 | 162,770 | 65.31 | chromosome | – | *terL* | Plasmid (0.989; 1 hallmark) |
+| DESC06 | cluster_004 | 62,124 | 64.68 | chromosome | – | *repA* | Plasmid (0.989; 0 hallmarks) |
+| DESC06 | cluster_005 | 7,487 | 64.04 | chromosome | – | – | Plasmid (0.868; 0 hallmarks) |
+
+†Displaced chromosomal segment; not plasmid (see Virulence Factor Profiling section).
+
+
 # References
 1. **Trycycler**: Wick, R. R., Judd, L. M., Cerdeira, L. T., Hawkey, J., Méric, G., Vezina, B., Wyres, K. L., & Holt, K. E. (2021). Trycycler: consensus assembly of bacterial genomes from multiple long-read assemblies. *Genome Biology*, 22(1), 256. https://doi.org/10.1186/s13059-021-02483-3
 2. **BWA-MEM**: Li, H. (2013). Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. *arXiv preprint*, arXiv:1303.3997. https://doi.org/10.48550/arXiv.1303.3997
@@ -99,3 +134,5 @@ All eight *Mycolicibacterium cosmeticum* isolates returned an identical and mini
 11. **BUSCO**: Manni, M., Berkeley, M. R., Seppey, M., Simão, F. A., & Zdobnov, E. M. (2021). BUSCO update: novel and streamlined workflows along with broader and deeper phylogenetic coverage for scoring of eukaryotic, prokaryotic, and viral genomes. *Molecular Biology and Evolution*, 38(10), 4647–4654. https://doi.org/10.1093/molbev/msab199
 12. **VFDB**: Liu, B., Zheng, D., Zhou, S., Chen, L., & Yang, J. (2022). VFDB 2022: a general classification scheme for bacterial virulence factors. *Nucleic Acids Research*, 50(D1), D912–D917. https://doi.org/10.1093/nar/gkab1107
 13. **CARD/RGI**: Alcock, B. P., Huynh, W., Chalil, R., Smith, K. W., Raphenya, A. R., Wlodarski, M. A., Edalatmand, A., Petkau, A., Syed, S. A., Tsang, K. K., Baker, S. J. C., Dave, M., McCarthy, M. C., Mukiri, K. M., Nasber, J. A., Pascoe, B., Stintzi, A., Tyber, F., Whitney, K. N., Zubyk, H. L., Baber, A. K., Mulvey, M. R., & McArthur, A. G. (2023). CARD 2023: expanded curation, support for machine learning, and resistome prediction at the Comprehensive Antibiotic Resistance Database. *Nucleic Acids Research*, 51(D1), D605–D612. https://doi.org/10.1093/nar/gkac920
+14. **MOB-suite**: Robertson, J., & Nash, J. H. (2018). MOB-suite: software tools for clustering, reconstruction and typing of bacterial plasmids. *Microbial Genomics*, 4(8), e000206. https://doi.org/10.1099/mgen.0.000206
+15. **geNomad**: Camargo, A. P., Roux, S., Schulz, F., Babinski, M., Xu, Y., Hu, B., Chain, P. S. G., Nayfach, S., & Kyrpides, N. C. (2024). Identification of mobile genetic elements with geNomad. *Nature Biotechnology*, 42(8), 1276–1285. https://doi.org/10.1038/s41587-023-01953-y
