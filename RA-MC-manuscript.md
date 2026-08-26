@@ -21,6 +21,16 @@ The GTDB-Tk and TYGS results were concordant: all eight isolates had the same cl
 ### Genome Quality Assessment and Structural Annotation
 Assembly completeness and contamination were evaluated using CheckM2 (v1.1.0) [Chklovski et al., 2023] and BUSCO (v[insert version]) against the `mycolicibacterium_odb12` lineage dataset [Manni et al., 2021]. Comprehensive structural and functional genome annotation was performed using Bakta (v1.12.0) [Schwengers et al., 2021] with the full database (v6.0), identifying coding sequences (CDSs), ribosomal RNAs (rRNAs), transfer RNAs (tRNAs), non-coding RNAs (ncRNAs), and CRISPR arrays.
 
+## Virulence and Antimicrobial Resistance Determinant Profiling
+
+### Virulence Factor Profiling
+Putative virulence factors were screened across all eight *M. cosmeticum* genome assemblies using the VF classifier pipeline with default parameters (https://github.com/GenomicaMicrob/VF_classifier) against the Virulence Factor Database (VFDB; http://www.mgc.ac.cn/VFs/) [Liu et al., 2022]. Predicted virulence determinants were categorized into functional classes, some of them including adherence, effector delivery systems (Type VII secretion), enzymes, exotoxins, immune modulation, nutritional/metabolic factors, regulation, stress survival, and others based on sequence similarity and conserved domain architecture.
+
+### Antimicrobial Resistance (AMR) Gene Profiling
+Antimicrobial resistance genes were identified using the Resistance Gene Identifier (RGI v6.0.8) against the Comprehensive Antibiotic Resistance Database (CARD Canonical v4.0.1, CARD Variants v4.0.2) [Alcock et al., 2023]. Open reading frames (ORFs) were predicted using Pyrodigal and aligned using DIAMOND against curated CARD reference protein models. Only Strict hits were retained for resistome characterization, while Loose and Nudged predictions were excluded.
+
+# Results and Discussion
+
 **Table 1.** Assembly, structural annotation, and quality statistics for the eight *Mycolicibacterium cosmeticum* isolates. Genome coverage was recalculated as the total number of bases in the paired-end short-read statistics divided by the corresponding assembled genome length. GC content and annotation counts were recalculated from the Bakta GenBank records. Completeness and contamination scores were estimated using CheckM2 (general model).
 
 | Isolate ID | Length (bp) | Genome Coverage (Short Reads) | GC Content (%) | CDSs | rRNAs | tRNAs | oriVs & oriTs | Number of Contigs | CheckM2 Comp. / Contam. (%) |
