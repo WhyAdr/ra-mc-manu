@@ -121,6 +121,12 @@ Five isolates (ANT01, ANT06, BODY01, BULB01, and DESC01) each contained one larg
 
 †Displaced chromosomal segment; not plasmid (see Virulence Factor Profiling section).
 
+## Comparative Pangenome Analysis
+
+Across the 15-genome dataset, Panaroo identified 10,087 gene families, of which 1,466 (14.5%) were present in all genomes. However, this small apparent core was largely driven by the divergent public assembly GCA_016197365.1: 3,829 families occurred in every other genome but were absent from this assembly, and excluding it increased the universal core to 5,295 of 9,149 families (57.9%). GCA_016197365.1 also showed low gene-content similarity to the remaining genomes and retained only 2,458 of its 5,271 input CDS assignments after strict graph cleaning. The 15-genome result therefore should not be interpreted as evidence of an extremely open *M. cosmeticum* pangenome until the taxonomic placement and assembly quality of this accession have been independently verified.
+
+In contrast, the eight isolates generated in this study formed a highly conserved gene-content group: 6,299 of 6,397 families (98.5%) were shared by all eight, leaving only 98 variable families, and pairwise gene-content Jaccard similarities ranged from approximately 0.988 to 0.9995. A further 472 families were shared by the eight study isolates but absent from the public genomes, with many occurring in contiguous blocks, including 201 families on the large plasmid-like contig of ANT01 and homologous regions in the other study isolates. Strict cleaning also removed all 190 CDSs from the distinct BULB06 plasmid-like contig despite its coherent replication, conjugation, Type VII secretion, mercury-resistance, and mobile-element annotations. Thus, the strict pangenome matrix captures the close relatedness of the study isolates but likely underestimates their mobile accessory gene content.
+
 
 # References
 1. **Trycycler**: Wick, R. R., Judd, L. M., Cerdeira, L. T., Hawkey, J., Méric, G., Vezina, B., Wyres, K. L., & Holt, K. E. (2021). Trycycler: consensus assembly of bacterial genomes from multiple long-read assemblies. *Genome Biology*, 22(1), 256. https://doi.org/10.1186/s13059-021-02483-3
